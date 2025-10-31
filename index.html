@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prefeitura de Marinolândia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <button id="settingsButton">⚙️</button>
+    <button id="playersButton">👥</button>
+  </header>
+
+  <main id="gameContainer">
+    <h1>🏛️ Prefeitura de Marinolândia</h1>
+    <button id="startButton">Iniciar novo mandato na prefeitura</button>
+
+    <section id="ruleSelection" class="hidden">
+      <div id="ruleOptions"></div>
+    </section>
+
+    <section id="activeRuleContainer" class="hidden">
+      <p class="rule-title" id="activeRuleTitle"></p>
+      <p class="rule-desc" id="activeRuleDesc"></p>
+    </section>
+
+    <p id="timer" class="hidden"></p>
+    <button id="nextButton" class="hidden">Encerrar Regra</button>
+
+    <section id="electionContainer" class="hidden">
+      <h2 id="electionPrompt"></h2>
+      <div id="voteOptions"></div>
+      <button id="showResultButton" class="hidden">Exibir vencedor da eleição</button>
+    </section>
+
+    <section id="resultContainer" class="hidden">
+      <h2 id="winnerMessage"></h2>
+      <button id="newMandateButton" class="hidden">Iniciar novo mandato</button>
+    </section>
+  </main>
+
+  <!-- Modal de Configurações -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <h2>⚙️ Configurações</h2>
+      <label>Duração da regra (minutos):
+        <input type="number" id="duration" value="3" min="1" max="10" />
+      </label>
+      <label><input type="checkbox" id="soundAlert" checked /> Som de alerta</label>
+      <button id="saveSettings">Salvar</button>
+    </div>
+  </div>
+
+  <!-- Modal de Jogadores -->
+  <div id="playersModal" class="modal">
+    <div class="modal-content">
+      <h2>👥 Jogadores Ativos</h2>
+      <div id="playersList"></div>
+      <button id="savePlayers">Salvar Jogadores</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

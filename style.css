@@ -1,0 +1,167 @@
+body {
+  background-color: #FBE8D3;
+  color: #5A4635;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+}
+
+header {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 1rem;
+}
+
+button {
+  background-color: #FF6F3C;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background-color: #ff875b;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Regras e cards */
+#ruleOptions,
+#voteOptions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 90%;
+  max-width: 500px;
+  margin-top: 1rem;
+}
+
+.rule-card,
+.vote-card {
+  background-color: #fff5ec;
+  border: 2px solid #FF6F3C;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.rule-card:hover,
+.vote-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  background-color: #ffeedf;
+}
+
+.rule-card-title,
+.vote-card-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #FF6F3C;
+  margin-bottom: 0.5rem;
+}
+
+.rule-card-desc {
+  font-size: 0.9rem;
+  color: #6e5847;
+}
+
+#timer {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.rule-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+.rule-desc {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #4b3a2f;
+}
+
+/* Modais */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Lista de jogadores */
+#playersList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#playersList label {
+  font-size: 1rem;
+}
+
+/* Eleição e resultado */
+#electionContainer h2,
+#resultContainer h2 {
+  color: #FF6F3C;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+#winnerMessage {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #FF6F3C;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
