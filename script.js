@@ -39,6 +39,11 @@ let lastMayor = null;
 let votes = {};
 let currentVoterIndex = 0;
 let timerInterval, timeLeft, duration = 3;
+const skipButton = document.createElement("button");
+skipButton.id = "skipButton";
+skipButton.textContent = "Encerrar agora ⏹️";
+skipButton.classList.add("hidden");
+document.getElementById("gameContainer").appendChild(skipButton);
 
 // =========================
 // ELEMENTOS DOM
@@ -146,18 +151,25 @@ function updateVoteOptions() {
 }
 
 function recordVote(voter, candidate) {
-    votes[voter] = candidate;
-    currentVoterIndex++;
-    if (currentVoterIndex < activePlayers.length) {
-        const nextVoter = activePlayers[currentVoterIndex];
-        electionPrompt.textContent = `${nextVoter} deve votar.`;
-        narrarGoogle('atenção estamos aqui!')
-        updateVoteOptions();
-    } else {
-        electionPrompt.textContent = "Todos votaram!";
-        voteOptions.innerHTML = "";
-        showResultButton.classList.remove("hidden");
-    }
+  votes[voter] = candidate;
+  currentVoterIndex++;
+
+  // 🔹 Remove estados de hover/focus para evitar "ficar selecionado" no iPad
+  document.querySelectorAll('.vote-card').forEach(card => {
+    card.blur();
+    card.style.transform = ''; // remove possível efeito visual
+    card.style.backgroundColor = ''; // reseta cor se tiver mudado via CSS
+  });
+
+  if (currentVoterIndex < activePlayers.length) {
+    const nextVoter = activePlayers[currentVoterIndex];
+    electionPrompt.textContent = `${nextVoter} deve votar.`;
+    updateVoteOptions();
+  } else {
+    electionPrompt.textContent = "Todos votaram!";
+    voteOptions.innerHTML = "";
+    showResultButton.classList.remove("hidden");
+  }
 }
 
 showResultButton.addEventListener("click", () => {
@@ -211,7 +223,7 @@ newMandateButton.addEventListener("click", () => {
 // CICLO DAS REGRAS
 // =========================
 function showRuleOptions() {
-    const shuffled = regras.sort(() => 0.5 - Math.random()).slice(0, 5);
+    const shuffled = regras.sort(() => 0.5 - Math.random()).slice(0, 3);
     ruleOptions.innerHTML = "";
     shuffled.forEach(rule => {
         const card = document.createElement("div");
@@ -243,17 +255,20 @@ function selectRule(rule) {
 }
 
 function startTimer() {
-    timeLeft = duration * 60;
-    timerDisplay.classList.remove("hidden");
+  timeLeft = duration * 60;
+  timerDisplay.classList.remove("hidden");
+  skipButton.classList.remove("hidden");
+  updateTimer();
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
     updateTimer();
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        updateTimer();
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            nextButton.classList.remove("hidden");
-        }
-    }, 1000);
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      skipButton.classList.add("hidden");
+      nextButton.classList.remove("hidden");
+    }
+  }, 1000);
 }
 
 function updateTimer() {
@@ -270,3 +285,8 @@ nextButton.addEventListener("click", () => {
     startElection();
 });
 
+skipButton.addEventListener("click", () => {
+  clearInterval(timerInterval);
+  skipButton.classList.add("hidden");
+  nextButton.classList.remove("hidden");
+});

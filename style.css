@@ -45,7 +45,17 @@ button:hover {
 }
 
 /* Regras e cards */
-#ruleOptions,
+#ruleOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  width: 95%;
+  max-width: 900px;
+  margin: 1rem auto;
+  justify-items: center;
+}
+
+
 #voteOptions {
   display: grid;
   grid-template-columns: 1fr;
@@ -164,4 +174,32 @@ button:hover {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Grid 3x3 na votação */
+#voteOptions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 90%;
+  max-width: 600px;
+  margin: 1rem auto;
+}
+
+/* Timer maior e centralizado */
+#timer {
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #FF6F3C;
+  text-align: center;
+}
+
+/* Botão encerrar rápido */
+#skipButton {
+  background-color: #d9534f;
+  margin-top: 0.5rem;
+}
+#skipButton:hover {
+  background-color: #c9302c;
 }
